@@ -29,6 +29,11 @@ class Pessoa extends BancoDeDados
         return $incluir;
     }
 
+    public function incluirImagem($idPessoa ,$Imagem)
+    {
+        $incluir = $this->executarConsulta("update Pessoa set Imagem = '" . $Imagem . "' where idPessoa = " . $idPessoa);
+        return $incluir;    }
+
     public function excluirPessoa($idPessoa)
     {
         $excluir = $this->executarConsulta("delete from Pessoa where idPessoa =" . $idPessoa);

@@ -24,7 +24,7 @@ require_once("header.php");
                 </tr>
 
                 <?php
-
+                ob_start();
                 $rows = $Pessoa->listarPessoas();
 
 
@@ -36,13 +36,9 @@ require_once("header.php");
                     echo "<td>" . $registro['Bio'] . "</td>";
                     echo "<td>" . $registro['Senha'] . "</td>";
                     echo "<td>" . $registro['Email'] . "</td>";
-                    if ($registro['Administrador'] == 1) {
-                        echo "<td>" . "Sim" . "</td>";
-                    } else {
-                        echo "<td>" . "Não" . "</td>";
-                    }
+                    echo "<td> <img src='data:image/*;base64," . base64_encode($registro["Imagem"]) . "' /> <td>";
+                    if ($registro['Administrador'] == 1) { echo "<td>" . "Sim" . "</td>"; } else { echo "<td>" . "Não" . "</td>"; }
                     echo "</tr>";
-                    echo "<img src= '" . $registro['Imagem'] . "'>";
                 }
                 ?>
             </table>
@@ -51,30 +47,47 @@ require_once("header.php");
             <?php
             if (isset($_GET['alterarid'])) {
                 $selecionaPessoa = $Pessoa->listarPessoa($_GET['alterarid']);
+
                 ?>
-                <form action="form_Pessoa.php" method="POST">
+                <form action="form_Pessoa.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="idPessoa" value="<?php echo $selecionaPessoa[0]['idPessoa'] ?>" />
-                    <input type="text" name="Nome" value="<?php echo $selecionaPessoa[0]['Nome'] ?>" maxlength="150"
-                        required />
+                    <input type="text" name="Nome" value="<?php echo $selecionaPessoa[0]['Nome'] ?>" maxlength="150" required />
+                    <input type="file" id="Imagem" name="Imagem" accept="image/png, image/png" />
                     <input type="submit" value="Alterar" name="comando">
                     <input type="submit" value="Excluir" name="comando">
                 </form>
 
                 <?php
-
             }
 
+
             if (isset($_POST['comando']) && $_POST['comando'] == 'Alterar') {
+
+                $imagem = $_FILES['Imagem'];
+                $info = getimagesize($imagem["tmp_name"]);
+                if (!$info) {
+                    die("arquivo não é uma imagem");
+                }
+                
+                $name = $imagem['name'];
+                $type = $imagem['type'];
+
+                $blob = addslashes((file_get_contents($imagem["tmp_name"])));
                 echo "Comandos para alterar o Pessoa ";
-                $Pessoa->alterarPessoa($_POST['idPessoa'], $_POST['Nome']);
+                $Pessoa->incluirImagem($_POST['idPessoa'], $blob);
                 header("location:form_Pessoa.php?comando=alteracaook");
+
             } else if (isset($_POST['comando']) && $_POST['comando'] == 'Excluir') {
+
                 echo "Comandos para excluir o Pessoa";
                 $Pessoa->excluirPessoa($_POST['idPessoa']);
                 header("location:form_Pessoa.php?comando=excluirok");
+
             } else if (isset($_POST['comando']) && $_POST['comando'] == 'Incluir') {
+
                 echo "Comandos para incluir o Pessoa";
                 if (trim($_POST['Nome']) != '') {
+                    
                     echo htmlspecialchars($_POST['Nome']);
                     $Pessoa->incluirPessoa(htmlspecialchars($_POST['Nome']));
                     header("location:form_Pessoa.php?comando=incluirok");
@@ -86,21 +99,7 @@ require_once("header.php");
         <div>
             <hr>
 
-            <h3>Incluir Pessoa</h3>
 
-            <form action="form_Pessoa.php" method="POST">
-
-                <div class="form-group">
-                    <input class="form-control" type="file" name="uploadfile" value="" />
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary" type="submit" value="Incluir" name="comando">UPLOAD</button>
-                </div>
-                <!--
-                <input type="text" name="Nome" value="" maxlength="150" required />
-                <input type="submit" value="Incluir" name="comando">
-                -->
-            </form>
 
         </div>
     </div>
