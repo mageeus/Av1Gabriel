@@ -4,7 +4,7 @@ require_once("class/class.Aluno.php");
 require_once("class/class.Avaliacao.php");
 require_once("class/class.Disciplina.php");
 require_once("header.php");
-$obj_login->revalidarLogin();
+//$obj_login->revalidarLogin();
 ?>
 
 <body>

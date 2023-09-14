@@ -18,7 +18,7 @@ if ($validar->validarSenha($_POST["dssenha"]) == "ok") {
     header("location:index.php?erro=" . $validar->validarSenha($_POST["dssenha"]));
 }
 
-echo($obj_login->revalidarLogin());
+//echo($obj_login->revalidarLogin());
 if ($obj_login->validarLogin($login, $senha)) {
     $token = md5($_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT']);
 

@@ -13,7 +13,7 @@ class BancoDeDados
         $host = 'localhost',
         $usuario = 'root',
         $senha = '',
-        $banco = 'aedb_quinto'
+        $banco = 'artlovers'
     ) {
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         $this->host = $host;

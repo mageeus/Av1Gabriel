@@ -35,7 +35,7 @@ class Login extends BancoDeDados
         return false;
     }
 
-    public function revalidarLogin()
+    /*public function revalidarLogin()
     {
         $token = md5($_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT']);
 
@@ -57,7 +57,7 @@ class Login extends BancoDeDados
             session_destroy();
             header("location:index.php?erro=LOGININVALIDO");
         }
-    }
+    }*/
 }
 
 $obj_login = new Login();
