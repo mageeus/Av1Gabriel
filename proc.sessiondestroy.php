@@ -3,7 +3,7 @@
 // Se estiver sendo usado session_name("something"), não esqueça de usá-lo agora!
 session_name(md5($_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT']));
 session_start();
-
+//comentario aleatorio
 // Apaga todas as variáveis da sessão
 $_SESSION = array();
 
