@@ -23,7 +23,7 @@ class ValidacoesDeFormulario extends TratamentoDeInput
             }
             return 'caracter invalido';
         }
-        return 'ok';
+        return True;
     }
 
     public function validarEmail($email)
@@ -41,7 +41,7 @@ class ValidacoesDeFormulario extends TratamentoDeInput
         if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
             return 'email invalido';
         } else {
-            return 'ok';
+            return True;
         }
     }
     public function validarSenha($senha)
@@ -57,13 +57,13 @@ class ValidacoesDeFormulario extends TratamentoDeInput
 
             return 'caracter invalido';
         }
-        return 'ok';
+        return True;
     }
 
 }
 
 $validar = new ValidacoesDeFormulario();
-
+/*
 echo 'nome valido: ', var_dump($validar->validarNome('mateus')), '<br>';
 echo 'nome invalido: ', var_dump($validar->validarNome('mateus<')), '<br>';
 
@@ -76,3 +76,4 @@ echo '<br>';
 
 echo 'senha valida: ', var_dump($validar->validarSenha('senhaComplicada')), '</br>';
 echo 'senha invalida: ', var_dump($validar->validarSenha('senha>')), '</br>';
+*/
