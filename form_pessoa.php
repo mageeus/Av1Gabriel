@@ -132,9 +132,6 @@ $obj_login->revalidarLogin();
         </div>
         <div>
             <hr>
-
-
-
         </div>
     </div>
 
