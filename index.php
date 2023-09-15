@@ -1,37 +1,36 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<?php
+require_once("class/class.Login.php");
+require_once("class/class.Pessoa.php");
+require_once("header.php");
+//$obj_login->revalidarLogin();
+?>
 
 <head>
-    <title>Administração do curso</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/login.css">
-</head>
-</style>
+    <!--    <link rel="stylesheet" href="./css/story.css"> -->
 </head>
 
 <body>
-    <div class="grid-container">
-        <div class="header">
-            <h2>Administração do curso</h2>
-        </div>
-
-        <div class="left" style="background-color:white;">&nbsp;</div>
-        <div class="middle" style="background-color:#bbb;">
-            <form action="proc.login.php" method="POST">
-                <label>Usuário: <input style="width:100%" type="text" name="dslogin" /></label> <br />
-                <label>Senha: <input type="password" name="dssenha" /></label> <br />
-                <input style="background-color: blue; color: white;" type="submit" value="Acessar" />
-            </form>
-
-        </div>
-        <div class="right" style="background-color:white;">&nbsp;</div>
-
-        <div class="footer" style="background-color:white;">
-            <p>Todos direitos reservados</p>
-        </div>
-    </div>
-
+    <?php require_once("menu.php") ?>
+    <h1>Log in</h1>
+    <p>｡☆✼★━━━━━━━━━━━━★✼☆｡</p>
+    <p>
+        <img src="./images/artlovers logo.png">
+    </p>
+    <p>｡☆✼★━━━━━━━━━━━━★✼☆｡</p>
+    <form action="proc.login.php" method="POST">
+        <p>
+            <label>Usuário:</label>
+            <input type="text" name="UserName">
+        </p>
+        <p>
+            <label>Senha:</label>
+            <input type="password" name="Senha">
+        </p>
+        <p>
+            <!--<input type="submit" value="Registrar">-->
+            <input type="submit" value="Acessar">
+        </p>
+    </form>
 </body>
 
 </html>
