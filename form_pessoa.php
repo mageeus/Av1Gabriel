@@ -29,11 +29,6 @@ $obj_login->revalidarLogin();
 
                 $linha = $Pessoa->selecionaPessoaPorUser($_SESSION['UserName']);
 
-
-//                var_dump($_SESSION['id']);
-
-                //$rows = $Pessoa->listarPessoa(1);
-
                 foreach ($linha as $registro) {
                     echo "<tr>";
                     echo "<td> <a href=form_Pessoa.php?alterarid=" . $registro['idPessoa'] . '>' . $registro['idPessoa'] . "</td>";
@@ -61,8 +56,6 @@ $obj_login->revalidarLogin();
                 ?>
                 <form action="form_Pessoa.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="idPessoa" value="<?php echo $selecionaPessoa[0]['idPessoa'] ?>" />
-                    <!--<input type="text" name="UserName" value="<?php //echo $selecionaPessoa[0]['UserName'] ?>"
-                        maxlength="150" />-->
                     <input type="text" name="Nome" value="<?php echo $selecionaPessoa[0]['Nome'] ?>" maxlength="150" />
                     <input type="text" name="Email" value="<?php echo $selecionaPessoa[0]['Email'] ?>" maxlength="150" />
                     <input type="text" name="Senha" value="<?php echo $selecionaPessoa[0]['Senha'] ?>" maxlength="150" />
@@ -77,7 +70,7 @@ $obj_login->revalidarLogin();
                 ?>
                 <form action="form_Pessoa.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="idPessoa" value="<?php echo $selecionaPessoa[0]['idPessoa'] ?>" />
-                    <input type="file" id="Imagem" name="Imagem" accept="image/png, image/png" required />
+                    <input type="file" id="Imagem" name="Imagem" accept="image/png, image/png" required/>
                     <input type="submit" value="Alterar Imagem" name="comando">
                     <input type="submit" value="Excluir Imagem" name="comando">
                 </form>
@@ -86,7 +79,6 @@ $obj_login->revalidarLogin();
 
 
             if (isset($_POST['comando']) && $_POST['comando'] == 'Alterar Imagem') {
-
                 $imagem = $_FILES['Imagem'];
                 $info = getimagesize($imagem["tmp_name"]);
                 if (!$info) {
@@ -113,13 +105,13 @@ $obj_login->revalidarLogin();
                 $Pessoa->alterarPessoa($_POST['idPessoa'], $_POST['Nome'], $_POST['Email'], $_POST['Senha'], $_POST['Bio']);
                 header("location:form_Pessoa.php?comando=alteracaook");
 
-            }/*elseif (isset($_POST['comando']) && $_POST['comando'] == 'Alterar') {
+            } /*elseif (isset($_POST['comando']) && $_POST['comando'] == 'Alterar') {
 
                 echo "Comandos para alterar o Pessoa ";
                 $Pessoa->alterarUserName($_POST['idPessoa'], $_POST['UserName']);
                 header("location:form_Pessoa.php?comando=alteracaook");
 
-            }*/ elseif (isset($_POST['comando']) && $_POST['comando'] == 'Excluir') {
+            }*/elseif (isset($_POST['comando']) && $_POST['comando'] == 'Excluir') {
 
                 echo "Comandos para excluir o Pessoa";
                 $Pessoa->excluirPessoa($_POST['idPessoa']);
