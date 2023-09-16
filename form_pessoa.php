@@ -35,8 +35,8 @@ $obj_login->revalidarLogin();
                     echo "<td>" . $registro['Nome'] . "</td>";
                     echo "<td>" . $registro['UserName'] . "</td>";
                     echo "<td>" . $registro['Bio'] . "</td>";
-                    echo "<td>" . $registro['Senha'] . "</td>";
                     echo "<td>" . $registro['Email'] . "</td>";
+                    echo "<td>" . $registro['Senha'] . "</td>";
                     echo "<td> <a href=form_Pessoa.php?alterarImagem=" . $registro['idPessoa'] . '>' . "<img class='perfil' src='data:image/*;base64," . base64_encode($registro["Imagem"]) . "' />" . "</td>";
                     if ($registro['Administrador'] == 1) {
                         echo "<td>" . "Sim" . "</td>";
@@ -56,10 +56,14 @@ $obj_login->revalidarLogin();
                 ?>
                 <form action="form_Pessoa.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="idPessoa" value="<?php echo $selecionaPessoa[0]['idPessoa'] ?>" />
+                    <label>Nome: </label>
                     <input type="text" name="Nome" value="<?php echo $selecionaPessoa[0]['Nome'] ?>" maxlength="150" />
-                    <input type="text" name="Email" value="<?php echo $selecionaPessoa[0]['Email'] ?>" maxlength="150" />
-                    <input type="text" name="Senha" value="<?php echo $selecionaPessoa[0]['Senha'] ?>" maxlength="150" />
+                    <label>Bio: </label>
                     <input type="text" name="Bio" value="<?php echo $selecionaPessoa[0]['Bio'] ?>" maxlength="150" />
+                    <label>Email: </label>
+                    <input type="text" name="Email" value="<?php echo $selecionaPessoa[0]['Email'] ?>" maxlength="150" />
+                    <label>Senha: </label>
+                    <input type="text" name="Senha" value="<?php echo $selecionaPessoa[0]['Senha'] ?>" maxlength="150" />
                     <input type="submit" value="Alterar" name="comando">
                     <input type="submit" value="Excluir" name="comando">
                 </form>
@@ -70,7 +74,7 @@ $obj_login->revalidarLogin();
                 ?>
                 <form action="form_Pessoa.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="idPessoa" value="<?php echo $selecionaPessoa[0]['idPessoa'] ?>" />
-                    <input type="file" id="Imagem" name="Imagem" accept="image/png, image/png" required/>
+                    <input type="file" id="Imagem" name="Imagem" accept="image/png, image/png" required />
                     <input type="submit" value="Alterar Imagem" name="comando">
                     <input type="submit" value="Excluir Imagem" name="comando">
                 </form>
@@ -107,11 +111,11 @@ $obj_login->revalidarLogin();
 
             } /*elseif (isset($_POST['comando']) && $_POST['comando'] == 'Alterar') {
 
-                echo "Comandos para alterar o Pessoa ";
-                $Pessoa->alterarUserName($_POST['idPessoa'], $_POST['UserName']);
-                header("location:form_Pessoa.php?comando=alteracaook");
+               echo "Comandos para alterar o Pessoa ";
+               $Pessoa->alterarUserName($_POST['idPessoa'], $_POST['UserName']);
+               header("location:form_Pessoa.php?comando=alteracaook");
 
-            }*/elseif (isset($_POST['comando']) && $_POST['comando'] == 'Excluir') {
+           }*/elseif (isset($_POST['comando']) && $_POST['comando'] == 'Excluir') {
 
                 echo "Comandos para excluir o Pessoa";
                 $Pessoa->excluirPessoa($_POST['idPessoa']);

@@ -1,54 +1,70 @@
-@font-face { 
-    font-family: pixelated; src: url("../fonts/Pixeled.ttf");
+@font-face {
+    font-family: pixelated;
+    src: url("../fonts/Pixeled.ttf");
 }
-@font-face { 
-    font-family: alagard; src: url("../fonts/alagard.ttf");
-  }
-  body{
-    background-color:whitesmoke;
+
+@font-face {
+    font-family: alagard;
+    src: url("../fonts/alagard.ttf");
+}
+
+body {
+    background-color: whitesmoke;
     text-align: center;
 
 }
-img.perfil{
+
+img.perfil {
     filter: hue-rotate(20deg);
-    
+
     /*image-rendering: pixelated;*/
     max-width: 150px;
 
 }
-img{
+
+img {
     filter: hue-rotate(20deg);
-    
+
     /*image-rendering: pixelated;*/
     max-width: 300px;
 }
-p{
+
+p {
     font-family: alagard;
     color: rgb(187, 128, 179);
     font-size: 30px;
 }
 
-p.divisao{
+p.divisao {
     font-size: 25px;
     color: rgb(142, 97, 160);
 }
-h1{
+
+h1 {
     color: rgb(219, 93, 177);
     font-family: alagard;
     font-size: 35px;
 }
-h2{
+
+h2 {
     color: rgb(219, 93, 177);
     font-family: alagard;
     font-size: 25px;
 }
-a{
-    color:rgb(116, 156, 168);
+
+a {
+    color: rgb(116, 156, 168);
     text-decoration: none;
 }
-a:visited{
-    color:rgb(112, 137, 145);
+
+a:visited {
+    color: rgb(112, 137, 145);
 }
-a:hover{
+
+a:hover {
     color: rgb(105, 75, 112);
+}
+
+sidenav {
+    color: red;
 }

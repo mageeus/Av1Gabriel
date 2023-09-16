@@ -22,7 +22,7 @@ if ($validar->validarSenha($_POST["Senha"]) == true) {
 $UserName = $_POST['UserName'];
 $Senha = $_POST['Senha'];*/
 
-echo($obj_login->revalidarLogin());
+echo ($obj_login->revalidarLogin());
 
 if ($obj_login->validarLogin($UserName, $Senha)) {
     $token = md5($_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT']);
@@ -36,21 +36,21 @@ if ($obj_login->validarLogin($UserName, $Senha)) {
 
     $_SESSION["UserName"] = $UserName;
     $_SESSION["Senha"] = $Senha;
-    
+
     $_SESSION["token"] = $token;
     echo "POST: ";
     var_dump($_POST);
     echo "<br>";
     echo "Session: ";
     var_dump($_SESSION);
-    
+
     header("location:form_pessoa.php");
 } else {
-/*    
-    echo "<br>";
-    var_dump($_SESSION);
-    echo "<br>";*/
+    /*    
+        echo "<br>";
+        var_dump($_SESSION);
+        echo "<br>";*/
     //var_dump($_POST);
-  
+
     header("location:index.php?erro=NAOLOCALIZADO");
 }

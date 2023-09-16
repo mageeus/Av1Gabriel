@@ -3,7 +3,7 @@ require_once("class.BancoDeDados.php");
 
 class Login extends BancoDeDados
 {
-    
+
     public function listarLogins()
     {
         $listar = $this->executarConsulta("select * from login l left outer join aluno a on l.idaluno = a.idaluno");

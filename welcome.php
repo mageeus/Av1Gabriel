@@ -6,7 +6,7 @@ require_once("header.php");
 
 <body>
 
-    <?php require_once("menu.php"); 
+    <?php require_once("menu.php");
     var_dump($_POST);
     ?>
 

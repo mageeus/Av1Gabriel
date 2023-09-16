@@ -17,8 +17,8 @@ if (ini_get("session.use_cookies")) {
     );
 }
 
-unset($_SESSION['login']);
-unset($_SESSION['senha']);
+unset($_SESSION['UserName']);
+unset($_SESSION['Senha']);
 unset($_SESSION['token']);
 $_SESSION = null;
 
