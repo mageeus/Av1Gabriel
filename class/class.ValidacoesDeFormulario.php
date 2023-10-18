@@ -12,13 +12,13 @@ class ValidacoesDeFormulario extends TratamentoDeInput
     const _MAXEMAIL = 300;
     const _MINEMAIL = 6;
 
-    public function validarNome($nome)
+    public function validarNome($UserName)
     {
-        if (parent::caracterInvalido($nome) == true) {
-            if (strlen($nome) > self::_MAXNOME) {
+        if (parent::caracterInvalido($UserName) == true) {
+            if (strlen($UserName) > self::_MAXNOME) {
                 return false; //apenas para verificar o erro certo, dps mudar para false
             }
-            if (strlen($nome) < self::_MINNOME) {
+            if (strlen($UserName) < self::_MINNOME) {
                 return false; //apenas para verificar o erro certo, dps mudar para false
             }
             return 'caracter invalido';
