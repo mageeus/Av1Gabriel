@@ -19,7 +19,7 @@
         <div class="left" style="background-color:white;">&nbsp;</div>
         <div class="middle" style="background-color:#bbb;">
             <form action="proc.login.php" method="POST">
-                <label>Usuário: <input style="width:100%" type="text" name="UserName" /></label> <br />
+                <label>Usuário: <input style="width:100%" type="text" name="Username" /></label> <br />
                 <label>Senha: <input type="password" name="Senha" /></label> <br />
                 <input style="background-color: blue; color: white;" type="submit" value="Acessar" />
             </form>

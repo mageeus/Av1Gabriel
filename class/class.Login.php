@@ -27,9 +27,9 @@ class Login extends BancoDeDados
         return $alterar;
     }
 
-    public function validarLogin($UserName, $Senha)
+    public function validarLogin($Username, $Senha)
     {
-        $resultado = $this->executarConsulta("select * from pessoa where UserName = '$UserName' and Senha = '$Senha'");
+        $resultado = $this->executarConsulta("select * from pessoa where Username = '$Username' and Senha = '$Senha'");
         $registros = mysqli_num_rows($resultado);
         if ($registros == 1)
             return True;
@@ -44,7 +44,7 @@ class Login extends BancoDeDados
         session_start();
 
 
-        if (!isset($_SESSION["UserName"]) || !isset($_SESSION["Senha"]) || !isset($_SESSION["token"])) {
+        if (!isset($_SESSION["Username"]) || !isset($_SESSION["Senha"]) || !isset($_SESSION["token"])) {
             session_destroy();
             header("location:index.php?erro=SEMLOGIN");
         }
@@ -54,7 +54,7 @@ class Login extends BancoDeDados
             header("location:index.php?erro=INVASAO");
         }
 
-        if (!$this->validarLogin($_SESSION["UserName"], $_SESSION["Senha"])) {
+        if (!$this->validarLogin($_SESSION["Username"], $_SESSION["Senha"])) {
             session_destroy();
             header("location:index.php?erro=LOGININVALIDO");
         }

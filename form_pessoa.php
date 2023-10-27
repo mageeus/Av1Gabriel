@@ -27,13 +27,13 @@ $obj_login->revalidarLogin();
                 <?php
                 ob_start();
 
-                $linha = $Pessoa->selecionaPessoaPorUser($_SESSION['UserName']);
+                $linha = $Pessoa->selecionaPessoaPorUser($_SESSION['Username']);
 
                 foreach ($linha as $registro) {
                     echo "<tr>";
                     echo "<td> <a href=form_Pessoa.php?alterarid=" . $registro['idPessoa'] . '>' . $registro['idPessoa'] . "</td>";
                     echo "<td>" . $registro['Nome'] . "</td>";
-                    echo "<td>" . $registro['UserName'] . "</td>";
+                    echo "<td>" . $registro['Username'] . "</td>";
                     echo "<td>" . $registro['Bio'] . "</td>";
                     echo "<td>" . $registro['Email'] . "</td>";
                     echo "<td>" . $registro['Senha'] . "</td>";

@@ -11,8 +11,8 @@ require_once("header.php");
         <input type="hidden" name="idPessoa" value="" />
         <label>Nome: </label>
         <input type="text" name="Nome" value="" maxlength="150" />
-        <label>UserName: </label>
-        <input type="text" name="UserName" value="" maxlength="150" />
+        <label>Username: </label>
+        <input type="text" name="Username" value="" maxlength="150" />
         <label>Email: </label>
         <input type="text" name="Email" value="" maxlength="150" />
         <label>Senha: </label>
@@ -26,12 +26,12 @@ require_once("header.php");
         $lista = [];
 
         foreach ($Pessoa->listaUserName() as $username) {
-            array_push($lista, $username['UserName']);
+            array_push($lista, $username['Username']);
         }
 
 
-        if (!in_array($_POST['UserName'], $lista)) {
-            $Pessoa->incluirPessoa($_POST['Nome'], $_POST['UserName'], $_POST['Email'], $_POST['Senha']);
+        if (!in_array($_POST['Username'], $lista)) {
+            $Pessoa->incluirPessoa($_POST['Nome'], $_POST['Username'], $_POST['Email'], $_POST['Senha']);
             header('location:index.php');
         } else {
             echo 'Username já está sendo utilizado.';
@@ -40,9 +40,9 @@ require_once("header.php");
         /*
         //verifica se existe alguem com esse username
         foreach ($Pessoa->listaUserName() as $key => $value) {
-            if ($value['UserName'] == $_POST['UserName']) {
+            if ($value['Username'] == $_POST['Username']) {
                 //não existe alguem com esse Username
-                //$Pessoa->incluirPessoa($_POST['Nome'], $_POST['UserName'], $_POST['Email'], $_POST['Senha']);         
+                //$Pessoa->incluirPessoa($_POST['Nome'], $_POST['Username'], $_POST['Email'], $_POST['Senha']);         
                 //header('location:index.php');
                 echo "Username já utilizado";
             } else {

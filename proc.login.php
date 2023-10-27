@@ -1,15 +1,15 @@
 <?php
-if (!isset($_POST["UserName"]) || !isset($_POST["Senha"])) {
+if (!isset($_POST["Username"]) || !isset($_POST["Senha"])) {
     header("location:index.php?erro=ACESSOILEGAL");
 }
 require_once("class\class.Login.php");
 require_once("class\class.Pessoa.php");
 require_once("class\class.ValidacoesDeFormulario.php");
 
-if ($validar->validarNome($_POST["UserName"]) == True) {
-    $UserName = $_POST["UserName"];
+if ($validar->validarNome($_POST["Username"]) == True) {
+    $Username = $_POST["Username"];
 } else {
-    header("location:index.php?erro=" . $validar->validarNome($_POST["UserName"]));
+    header("location:index.php?erro=" . $validar->validarNome($_POST["Username"]));
 }
 
 if ($validar->validarSenha($_POST["Senha"]) == true) {
@@ -19,22 +19,22 @@ if ($validar->validarSenha($_POST["Senha"]) == true) {
 }
 //var_dump($_POST);
 /*
-$UserName = $_POST['UserName'];
+$Username = $_POST['Username'];
 $Senha = $_POST['Senha'];*/
 
 echo ($obj_login->revalidarLogin());
 
-if ($obj_login->validarLogin($UserName, $Senha)) {
+if ($obj_login->validarLogin($Username, $Senha)) {
     $token = md5($_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT']);
 
     session_name($token);
 
     session_start();
 
-    // $_POST['UserName'] = $UserName;
+    // $_POST['Username'] = $Username;
     // $_POST['Senha'] = $Senha;
 
-    $_SESSION["UserName"] = $UserName;
+    $_SESSION["Username"] = $Username;
     $_SESSION["Senha"] = $Senha;
 
     $_SESSION["token"] = $token;

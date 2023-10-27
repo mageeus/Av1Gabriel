@@ -19,7 +19,7 @@ require_once("header.php");
     <form action="proc.login.php" method="POST">
         <p>
             <label>Usuário:</label>
-            <input type="text" name="UserName">
+            <input type="text" name="Username">
         </p>
         <p>
             <label>Senha:</label>
