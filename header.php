@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 
 <head>
-    <title>Administração do curso</title>
+    <title>ArtLovers</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/story.css">

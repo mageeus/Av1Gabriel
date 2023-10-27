@@ -109,27 +109,12 @@ $obj_login->revalidarLogin();
                 $Pessoa->alterarPessoa($_POST['idPessoa'], $_POST['Nome'], $_POST['Email'], $_POST['Senha'], $_POST['Bio']);
                 header("location:form_Pessoa.php?comando=alteracaook");
 
-            } /*elseif (isset($_POST['comando']) && $_POST['comando'] == 'Alterar') {
+            } elseif (isset($_POST['comando']) && $_POST['comando'] == 'Excluir') {
 
-               echo "Comandos para alterar o Pessoa ";
-               $Pessoa->alterarUserName($_POST['idPessoa'], $_POST['UserName']);
-               header("location:form_Pessoa.php?comando=alteracaook");
-
-           }*/elseif (isset($_POST['comando']) && $_POST['comando'] == 'Excluir') {
-
-                echo "Comandos para excluir o Pessoa";
+                echo 'Comandos para excluir o Pessoa';
                 $Pessoa->excluirPessoa($_POST['idPessoa']);
                 header("location:form_Pessoa.php?comando=excluirok");
 
-            } else if (isset($_POST['comando']) && $_POST['comando'] == 'Incluir') {
-
-                echo "Comandos para incluir o Pessoa";
-                if (trim($_POST['Nome']) != '') {
-
-                    echo htmlspecialchars($_POST['Nome']);
-                    $Pessoa->incluirPessoa(htmlspecialchars($_POST['Nome']));
-                    header("location:form_Pessoa.php?comando=incluirok");
-                }
             }
 
             ?>

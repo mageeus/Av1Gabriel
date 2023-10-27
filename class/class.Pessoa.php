@@ -29,9 +29,9 @@ class Pessoa extends BancoDeDados
         return $arrayPessoa;
     }
 
-    public function incluirPessoa($Nome)
+    public function incluirPessoa($Nome, $UserName,$Email, $Senha)
     {
-        $incluir = $this->executarConsulta("insert into Pessoa(Nome) values ('" . $Nome . "')");
+        $incluir = $this->executarConsulta("insert into Pessoa(Nome, UserName, Email, Senha) values ('$Nome', '$UserName', '$Email', '$Senha')");
         return $incluir;
     }
 
@@ -43,7 +43,7 @@ class Pessoa extends BancoDeDados
 
     public function excluirPessoa($idPessoa)
     {
-        $excluir = $this->executarConsulta("delete from Pessoa where idPessoa =" . $idPessoa);
+        $excluir = $this->executarConsulta("delete from Pessoa where idPessoa = $idPessoa");
         return $excluir;
     }
     public function alterarPessoa($idPessoa, $Nome, $Email, $Senha, $Bio)
@@ -53,14 +53,20 @@ class Pessoa extends BancoDeDados
     }
     public function alterarUserName($idPessoa, $UserName)
     {
-        $alterar = $this->executarConsulta("update Pessoa set UserName = '$UserName' where idPessoa = " . $idPessoa);
+        $alterar = $this->executarConsulta("update Pessoa set UserName = '$UserName' where idPessoa = $idPessoa");
         return $alterar;
     }
     public function excluirImagem($idPessoa)
     {
-        $excluir = $this->executarConsulta("update Pessoa set Imagem = '' where idPessoa = " . $idPessoa);
+        $excluir = $this->executarConsulta("update Pessoa set Imagem = '' where idPessoa = $idPessoa");
         return $excluir;
     }
+    public function listaUserName()
+    {
+        $listaUserName = $this->executarConsulta("select idPessoa, UserName from Pessoa");
+        return $listaUserName;
+    }
+
 }
 
 $Pessoa = new Pessoa();
