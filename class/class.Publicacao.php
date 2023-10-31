@@ -6,11 +6,14 @@ class Publicacao extends BancoDeDados
     public function listarPublicacao()
     {
         $arrayPublicacao = $this->retornaArray("
-        SELECT publicacao.idPublicacao, arte.arte, pessoa.username, publicacao.data
+        SELECT publicacao.idPessoa, publicacao.idPublicacao, arte.arte, pessoa.username, publicacao.data
         FROM publicacao
         INNER JOIN arte ON publicacao.idArte = arte.idArte
-        inner join pessoa on publicacao.idpessoa = pessoa.idPessoa");
-
+        inner join pessoa on publicacao.idpessoa = pessoa.idPessoa
+        ORDER BY publicacao.data DESC;
+        ");
+        //      comentario.comentario        
+        //      inner join comentario on publicacao.idcomentario = comentario.idcomentario
         return $arrayPublicacao;
     }
 
@@ -26,6 +29,13 @@ class Publicacao extends BancoDeDados
         $incluir = $this->executarConsulta("insert into Publicacao (idPessoa, idArte, data) values ($idPessoa, $idArte, CURRENT_TIMESTAMP)");
 
         return $incluir;
+    }
+
+    public function selecionaPublicacao($idPublicacao)
+    {
+        $seleciona = $this->retornaArray("select * from publicacao where idPublicacao = $idPublicacao");
+
+        return $seleciona;
     }
 }
 
