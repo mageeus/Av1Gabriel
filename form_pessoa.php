@@ -1,6 +1,7 @@
 <?php
 require_once("class/class.Login.php");
 require_once("class/class.Pessoa.php");
+require_once("class/class.Arte.php");
 require_once("header.php");
 $obj_login->revalidarLogin();
 ?>
@@ -116,7 +117,20 @@ $obj_login->revalidarLogin();
             ?>
         </div>
         <div>
-            <hr>
+            <table>
+                <td>Artes</td>
+
+                <?php 
+                ob_start();
+                $linha = $Arte->listArtePorPessoa($_SESSION['idPessoa']);
+
+                foreach($linha as $arte){
+                    echo "<tr>";
+                    echo "<td> <img class='perfil' src='data:image/*;base64," . base64_encode($arte["Arte"]) . "' />" . "</td>";
+                    echo "</tr>";
+                }
+                ?>
+            </table>
         </div>
     </div>
 
