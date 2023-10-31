@@ -25,7 +25,7 @@ class Aluno extends BancoDeDados
 
     public function incluirAluno($nmaluno)
     {
-        $incluir = $this->executarConsulta("insert into aluno(nmaluno) values ('" . $nmaluno . "')");
+        $incluir = $this->executarConsulta("insert into aluno(nmaluno) values ('$nmaluno')");
         return $incluir;
     }
 
