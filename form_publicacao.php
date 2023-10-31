@@ -37,8 +37,6 @@ $obj_login->revalidarLogin();
 
                 /*
                 coisas salvas na sessão:
-                    idArte
-                    Arte
                     idPessoa
                     Username
                 */
@@ -79,7 +77,6 @@ $obj_login->revalidarLogin();
                 $blob = addslashes((file_get_contents($imagem["tmp_name"])));
                 //$Arte->InsertArte($_POST['idPessoa'], $blob);
                 $idArte = ($Arte->InsertArte($_POST['idPessoa'], $blob)[0]['idArte']);
-                //echo $idArte;
                 $Publicacao->CriarPublicacao($_SESSION['idPessoa'], $idArte);
                 header("location:form_publicacao.php?comando=alteracaook");
             }
