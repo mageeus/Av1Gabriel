@@ -9,8 +9,14 @@ require_once("header.php");
 </head>
 
 <body>
-    <?php require_once("menu.php") ?>
+
+    <?php // require_once("menu.php") ?>
     <h1>Log in</h1>
+    <form action="proc.login.php" method="POST">
+        <p>
+            <a href="form_criarPessoa.php">Criar perfil</a>
+        </p>
+    </form>
     <p>｡☆✼★━━━━━━━━━━━━★✼☆｡</p>
     <p>
         <img src="./images/artlovers logo.png">
@@ -26,7 +32,6 @@ require_once("header.php");
             <input type="password" name="Senha">
         </p>
         <p>
-            <!--<input type="submit" value="Registrar">-->
             <input type="submit" value="Acessar">
         </p>
     </form>
