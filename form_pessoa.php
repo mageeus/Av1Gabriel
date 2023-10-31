@@ -33,7 +33,7 @@ $obj_login->revalidarLogin();
                     echo "<tr>";
                     echo "<td> <a href=form_Pessoa.php?alterarid=" . $registro['idPessoa'] . '>' . $registro['idPessoa'] . "</td>";
                     echo "<td>" . $registro['Nome'] . "</td>";
-                    echo "<td>" . $registro['Username'] . "</td>";
+                    echo "<td>" . $registro['UserName'] . "</td>";
                     echo "<td>" . $registro['Bio'] . "</td>";
                     echo "<td>" . $registro['Email'] . "</td>";
                     echo "<td>" . $registro['Senha'] . "</td>";
@@ -93,25 +93,21 @@ $obj_login->revalidarLogin();
                 $type = $imagem['type'];
 
                 $blob = addslashes((file_get_contents($imagem["tmp_name"])));
-                echo "Comandos para alterar o Pessoa ";
                 $Pessoa->incluirImagem($_POST['idPessoa'], $blob);
                 header("location:form_Pessoa.php?comando=alteracaook");
 
             } elseif (isset($_POST['comando']) && $_POST['comando'] == 'Excluir Imagem') {
 
-                echo "Comandos para alterar o Pessoa ";
                 $Pessoa->incluirImagem($_POST['idPessoa'], $blob);
                 header("location:form_Pessoa.php?comando=excluirook");
 
             } elseif (isset($_POST['comando']) && $_POST['comando'] == 'Alterar') {
 
-                echo "Comandos para alterar o Pessoa ";
                 $Pessoa->alterarPessoa($_POST['idPessoa'], $_POST['Nome'], $_POST['Email'], $_POST['Senha'], $_POST['Bio']);
                 header("location:form_Pessoa.php?comando=alteracaook");
 
             } elseif (isset($_POST['comando']) && $_POST['comando'] == 'Excluir') {
 
-                echo 'Comandos para excluir o Pessoa';
                 $Pessoa->excluirPessoa($_POST['idPessoa']);
                 header("location:form_Pessoa.php?comando=excluirok");
 
