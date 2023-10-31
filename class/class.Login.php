@@ -3,7 +3,8 @@ require_once("class.BancoDeDados.php");
 
 class Login extends BancoDeDados
 {
-
+    
+    /*
     public function listarLogins()
     {
         $listar = $this->executarConsulta("select * from login l left outer join aluno a on l.idaluno = a.idaluno");
@@ -26,6 +27,7 @@ class Login extends BancoDeDados
         $alterar = $this->executarConsulta("update login set dssenha = '" . $dssenha . "' where dslogin = '" . $dslogin . "'");
         return $alterar;
     }
+    */
 
     public function validarLogin($Username, $Senha)
     {
