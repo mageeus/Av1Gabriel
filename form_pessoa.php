@@ -19,15 +19,20 @@ $obj_login->revalidarLogin();
                     <td>Nome</td>
                     <td>Username</td>
                     <td>Bio</td>
-                    <td>Senha</td>
                     <td>Email</td>
+                    <!-- <td>Senha</td> -->
                     <td>Imagem</td>
                     <td>Administrador</td>
                 </tr>
 
                 <?php
                 ob_start();
-
+/*
+                $pessoa = $Pessoa->selecionaPessoaPorUser($_SESSION['Username']);
+                foreach ($pessoa as $dados) {
+                    $_SESSION['idPessoa'] = $dados['idPessoa'];
+                }
+*/
                 $linha = $Pessoa->selecionaPessoaPorUser($_SESSION['Username']);
 
                 foreach ($linha as $registro) {
@@ -37,7 +42,7 @@ $obj_login->revalidarLogin();
                     echo "<td>" . $registro['UserName'] . "</td>";
                     echo "<td>" . $registro['Bio'] . "</td>";
                     echo "<td>" . $registro['Email'] . "</td>";
-                    echo "<td>" . $registro['Senha'] . "</td>";
+                    // echo "<td>" . $registro['Senha'] . "</td>";
                     echo "<td> <a href=form_Pessoa.php?alterarImagem=" . $registro['idPessoa'] . '>' . "<img class='perfil' src='data:image/*;base64," . base64_encode($registro["Imagem"]) . "' />" . "</td>";
                     if ($registro['Administrador'] == 1) {
                         echo "<td>" . "Sim" . "</td>";
@@ -45,6 +50,8 @@ $obj_login->revalidarLogin();
                         echo "<td>" . "Não" . "</td>";
                     }
                     echo "</tr>";
+
+                    $_SESSION['idPessoa'] = $registro['idPessoa'];
                 }
                 ?>
             </table>
@@ -64,7 +71,7 @@ $obj_login->revalidarLogin();
                     <label>Email: </label>
                     <input type="text" name="Email" value="<?php echo $selecionaPessoa[0]['Email'] ?>" maxlength="150" />
                     <label>Senha: </label>
-                    <input type="text" name="Senha" value="<?php echo $selecionaPessoa[0]['Senha'] ?>" maxlength="150" />
+                    <input type="password" name="Senha" value="" maxlength="150" />
                     <input type="submit" value="Alterar" name="comando">
                     <input type="submit" value="Excluir" name="comando">
                 </form>
