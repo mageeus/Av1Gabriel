@@ -1,12 +1,13 @@
 <?php
 require_once("class.BancoDeDados.php");
+require_once("class.Arte.php");
 
 class Publicacao extends BancoDeDados
 {
     public function listarPublicacao()
     {
         $arrayPublicacao = $this->retornaArray("
-        SELECT publicacao.idPessoa, publicacao.idPublicacao, arte.arte, pessoa.username, publicacao.data
+        SELECT publicacao.idPessoa, publicacao.idPublicacao, arte.arte, pessoa.username, publicacao.data, publicacao.idArte
         FROM publicacao
         INNER JOIN arte ON publicacao.idArte = arte.idArte
         inner join pessoa on publicacao.idpessoa = pessoa.idPessoa
@@ -36,6 +37,13 @@ class Publicacao extends BancoDeDados
         $seleciona = $this->retornaArray("select * from publicacao where idPublicacao = $idPublicacao");
 
         return $seleciona;
+    }
+
+    public function deletePublicacao($idPublicacao)
+    {
+        $delete = $this->executarConsulta("delete from Publicacao where idPublicacao = $idPublicacao");
+        
+        return $delete;
     }
 }
 

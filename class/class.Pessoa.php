@@ -31,13 +31,13 @@ class Pessoa extends BancoDeDados
 
     public function incluirPessoa($Nome, $Username,$Email, $Senha)
     {
-        $incluir = $this->executarConsulta("insert into Pessoa(Nome, Username, Email, Senha) values ('$Nome', '$Username', '$Email', '$Senha')");
+        $incluir = $this->executarConsulta("insert into Pessoa(Nome, Username, Email, Senha, data) values ('$Nome', '$Username', '$Email', '$Senha', CURRENT_TIMESTAMP)");
         return $incluir;
     }
 
     public function incluirImagem($idPessoa, $Imagem)
     {
-        $incluir = $this->executarConsulta("update Pessoa set Imagem = '" . $Imagem . "' where idPessoa = " . $idPessoa);
+        $incluir = $this->executarConsulta("update Pessoa set Imagem =  '$Imagem ' where idPessoa = $idPessoa ");
         return $incluir;
     }
 
