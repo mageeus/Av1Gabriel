@@ -3,15 +3,20 @@ require_once("class.BancoDeDados.php");
 
 class Comentario extends BancoDeDados
 {
-    public function listComentario($idPessoa)
+    public function listComentario($idPublicacao)
     {
-        $list = $this->retornaArray("select * from Comentario where idPessoa = $idPessoa");
-
+        $list = $this->retornaArray("
+        select Comentario.idComentario, Comentario.IdPublicacao, comentario.comentario, Pessoa.Username        
+        from Comentario 
+        INNER JOIN Pessoa on Comentario.idPessoa = Pessoa.idPessoa
+        where idPublicacao = $idPublicacao
+        ");
+        
         return $list;
     }
-    public function InsertComentario($idPessoa, $Comentario)
+    public function InsertComentario($idPessoa, $idPublicacao, $Comentario)
     {
-        $insert = $this->executarConsulta("insert into Comentario (idPessoa, Comentario, data) values ($idPessoa, '$Comentario', CURRENT_TIMESTAMP)");
+        $insert = $this->executarConsulta("insert into Comentario (idPessoa, idPublicacao, Comentario, data) values ($idPessoa, $idPublicacao, '$Comentario', CURRENT_TIMESTAMP)");
 
         return $insert;
     }

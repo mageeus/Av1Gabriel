@@ -10,11 +10,14 @@ class Publicacao extends BancoDeDados
         SELECT publicacao.idPessoa, publicacao.idPublicacao, arte.arte, pessoa.username, publicacao.data, publicacao.idArte
         FROM publicacao
         INNER JOIN arte ON publicacao.idArte = arte.idArte
-        inner join pessoa on publicacao.idpessoa = pessoa.idPessoa
+        INNER JOIN pessoa on publicacao.idpessoa = pessoa.idPessoa
         ORDER BY publicacao.data DESC;
         ");
-        //      comentario.comentario        
-        //      inner join comentario on publicacao.idcomentario = comentario.idcomentario
+
+        /*
+        , comentario.comentario
+        LEFT JOIN comentario on publicacao.idPublicacao = comentario.idPublicacao
+        */
         return $arrayPublicacao;
     }
 
@@ -42,7 +45,7 @@ class Publicacao extends BancoDeDados
     public function deletePublicacao($idPublicacao)
     {
         $delete = $this->executarConsulta("delete from Publicacao where idPublicacao = $idPublicacao");
-        
+
         return $delete;
     }
 }
