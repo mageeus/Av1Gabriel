@@ -9,6 +9,12 @@ class Arte extends BancoDeDados
 
         return $list;
     }
+    public function selecionaArte($idArte)
+    {
+        $arte = $this->retornaArray("select * from Arte where idArte = $idArte");
+
+        return $arte;
+    }
     public function listArtePorPessoa($idPessoa)
     {
         $list = $this->retornaArray("select * from Arte where idPessoa = $idPessoa order by data desc");
