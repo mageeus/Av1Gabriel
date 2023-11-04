@@ -6,10 +6,11 @@ class Comentario extends BancoDeDados
     public function listComentario($idPublicacao)
     {
         $list = $this->retornaArray("
-        select Comentario.idComentario, Comentario.IdPublicacao, comentario.comentario, Pessoa.Username        
+        select Comentario.idComentario, Comentario.IdPublicacao, comentario.comentario, Pessoa.Username, Comentario.data      
         from Comentario 
         INNER JOIN Pessoa on Comentario.idPessoa = Pessoa.idPessoa
         where idPublicacao = $idPublicacao
+        order by data desc
         ");
         
         return $list;
