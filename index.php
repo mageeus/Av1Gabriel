@@ -32,7 +32,7 @@ require_once("header.php");
             <input type="password" name="Senha">
         </p>
         <p>
-            <input type="submit" value="Acessar">
+            <input type="submit" value="Acessar" />
         </p>
     </form>
 </body>
