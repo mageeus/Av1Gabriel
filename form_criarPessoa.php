@@ -17,7 +17,7 @@ require_once("header.php");
         <input type="text" name="Email" value="" maxlength="150" />
         <label>Senha: </label>
         <input type="password" name="Senha" value="" maxlength="150" />
-        <input type="submit" value="Criar" name="comando">
+        <input type="submit" value="Criar" name="comando" />
     </form>
 
     <?php
