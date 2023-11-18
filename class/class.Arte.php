@@ -17,7 +17,15 @@ class Arte extends BancoDeDados
     }
     public function listArtePorPessoa($idPessoa)
     {
-        $list = $this->retornaArray("select * from Arte where idPessoa = $idPessoa order by data desc");
+        $list = $this->retornaArray("select publicacao.idPessoa, publicacao.idPublicacao, arte.arte, arte.idArte from publicacao inner join arte on publicacao.idArte = arte.idArte where publicacao.idPessoa = $idPessoa order by publicacao.data desc");
+
+
+        // SELECT publicacao.idPessoa, publicacao.idPublicacao, arte.arte, pessoa.username, publicacao.data, publicacao.idArte
+        // FROM publicacao
+        // INNER JOIN arte ON publicacao.idArte = arte.idArte
+        // INNER JOIN pessoa on publicacao.idpessoa = pessoa.idPessoa
+        // ORDER BY publicacao.data DESC;
+        // select publicacao.idPessoa, publicacao.idPublicacao, arte.arte from publicacao where idPessoa = $idPessoa inner join arte on publicaca.idArte = arte.idArte
 
         return $list;
     }
