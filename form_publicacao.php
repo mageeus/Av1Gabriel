@@ -19,18 +19,24 @@ $obj_login->revalidarLogin();
         $_SESSION['idPublicacao'] = $_GET['idPublicacao'];
         $_SESSION['idArte'] = $_GET['idArte'];
 
+        if (isset($_GET['antes']) && $_GET['antes'] == 'Pessoa') {
+            $antes = 'form_pessoa.php';
+        } elseif ($_GET['antes'] == 'Feed'){
+            $antes = 'form_feed.php';
+        }
     ?>
-        <form action="form_feed.php" method="POST" enctype="multipart/form-data">
+        <form action="<?php echo $antes?>" method="POST" enctype="multipart/form-data">
             <input type="file" id="Arte" name="Arte" accept="image/png, image/png" required />
             <input type="submit" value="Editar Publicação" name="comando" />
-            <a href=form_feed.php> <input type="button" value="Cancelar" /> </a>
+            <a href="<?php echo $antes?>"> <input type="button" value="Cancelar" /> </a>
         </form>
 
-        <form action="form_feed.php" method="POST">
+        <form action="<?php echo $antes?>" method="POST">
             <input type="submit" value="Apagar Publicação" name="comando" />
         </form>
 
     <?php
+
     }
     $arte = $Arte->selecionaArte($_GET['idArte'])[0]['Arte'];
     echo "<img class='post' src='data:image/*;base64," . base64_encode($arte) . "' /> </br>";
@@ -40,8 +46,10 @@ $obj_login->revalidarLogin();
         <input type="submit" value="Comentar" name="comando" />
     </form>
     <?php
+    // var_dump($_POST['comando']);
     if (isset($_POST["comando"]) && $_POST["comando"] == "Comentar") {
         $Comentario->InsertComentario($_SESSION['idPessoa'], $_GET['idPublicacao'], $_POST['Comentario']);
+        unset($_POST['comando']);
     }
 
     $comentarios = $Comentario->listComentario($_GET['idPublicacao']);
@@ -52,6 +60,12 @@ $obj_login->revalidarLogin();
         echo '<br>';
     }
     echo '</div>';
-    ?>
 
+    ?>
+    <script>
+        //remove as coisas da url para impedir reenviar dados ao atualizar
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
 </body>
