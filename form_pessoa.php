@@ -42,7 +42,6 @@ $obj_login->revalidarLogin();
                     echo "<td>" . $registro['UserName'] . "</td>";
                     echo "<td>" . $registro['Bio'] . "</td>";
                     echo "<td>" . $registro['Email'] . "</td>";
-                    // echo "<td>" . $registro['Senha'] . "</td>";
                     echo "<td> <a href=form_Pessoa.php?alterarImagem=" . $registro['idPessoa'] . '>' . "<img class='perfil' src='data:image/*;base64," . base64_encode($registro["Imagem"]) . "' />" . "</td>";
                     if ($registro['Administrador'] == 1) {
                         echo "<td>" . "Sim" . "</td>";
@@ -72,8 +71,8 @@ $obj_login->revalidarLogin();
                     <input type="text" name="Email" value="<?php echo $selecionaPessoa[0]['Email'] ?>" maxlength="150" />
                     <label>Senha: </label>
                     <input type="password" name="Senha" value="" maxlength="150" />
-                    <input type="submit" value="Alterar" name="comando">
-                    <input type="submit" value="Excluir" name="comando">
+                    <input type="submit" value="Alterar" name="comando" />
+                    <input type="submit" value="Excluir" name="comando" />
                 </form>
 
                 <?php
@@ -83,8 +82,8 @@ $obj_login->revalidarLogin();
                 <form action="form_Pessoa.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="idPessoa" value="<?php echo $selecionaPessoa[0]['idPessoa'] ?>" />
                     <input type="file" id="Imagem" name="Imagem" accept="image/png, image/png" required />
-                    <input type="submit" value="Alterar Imagem" name="comando">
-                    <input type="submit" value="Excluir Imagem" name="comando">
+                    <input type="submit" value="Alterar Imagem" name="comando" />
+                    <input type="submit" value="Excluir Imagem" name="comando" />
                 </form>
                 <?php
             }
@@ -129,11 +128,11 @@ $obj_login->revalidarLogin();
 
                 <?php 
                 ob_start();
-                $linha = $Arte->listArtePorPessoa($_SESSION['idPessoa']);
+                $artes = $Arte->listArtePorPessoa($_SESSION['idPessoa']);
 
-                foreach($linha as $arte){
+                foreach($artes as $arte){
                     echo "<tr>";
-                    echo "<td> <img class='perfil' src='data:image/*;base64," . base64_encode($arte["Arte"]) . "' />" . "</td>";
+                    echo "<td> <a href=form_publicacao.php?idArte=". $arte['idArte'] . "&idPublicacao=" . $arte['idPublicacao'] . "&idPessoa=" . $arte['idPessoa'] . "&antes=Pessoa" . ">" . "<img class='perfil' src='data:image/*;base64," . base64_encode($arte["arte"]) . "' />" . "</td>";
                     echo "</tr>";
                 }
                 ?>
