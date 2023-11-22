@@ -3,7 +3,7 @@ require_once('class.TratamentoDeInput.php');
 
 class ValidacoesDeFormulario extends TratamentoDeInput
 {
-    const _MAXNOME = 20;
+    const _MAXNOME = 25;
     const _MINNOME = 5;
 
     const _MAXSENHA = 15; //sem criptografia
@@ -14,12 +14,12 @@ class ValidacoesDeFormulario extends TratamentoDeInput
 
     public function validarNome($Username)
     {
-        if (parent::caracterInvalido($Username) == true) {
+        if (parent::caracterInvalido($Username) == True) {
             if (strlen($Username) > self::_MAXNOME) {
-                return false; //apenas para verificar o erro certo, dps mudar para false
+                return False; //apenas para verificar o erro certo, dps mudar para False
             }
             if (strlen($Username) < self::_MINNOME) {
-                return false; //apenas para verificar o erro certo, dps mudar para false
+                return False; //apenas para verificar o erro certo, dps mudar para False
             }
             return 'caracter invalido';
         }
@@ -28,38 +28,37 @@ class ValidacoesDeFormulario extends TratamentoDeInput
 
     public function validarEmail($email)
     {
-        if (parent::caracterInvalido($email) == true) {
+        if (parent::caracterInvalido($email) == True) {
             if (strlen($email) > self::_MAXEMAIL) {
-                return 'muito longo';
+                return False;
             }
             if (strlen($email) < self::_MINEMAIL) {
-                return 'muito curto';
+                return False;
             }
-            return 'caracter invalido';
+            return False;
         }
 
-        if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
-            return 'email invalido';
+        if (filter_var($email, FILTER_VALIDATE_EMAIL) != True) {
+            return False;
         } else {
             return True;
         }
     }
     public function validarSenha($senha)
     {
-        if (parent::caracterInvalido($senha) == true) {
+        if (parent::caracterInvalido($senha) == True) {
             if (strlen($senha) > self::_MAXSENHA) {
-                return false; //apenas para verificar o erro certo, dps mudar para false
+                return False;                       //apenas para verificar o erro certo, dps mudar para False
             }
 
             if (strlen($senha) < self::_MINSENHA) {
-                return false; //apenas para verificar o erro certo, dps mudar para false
+                return False;                       //apenas para verificar o erro certo, dps mudar para False
             }
 
             return 'caracter invalido';
         }
         return True;
     }
-
 }
 
 $validar = new ValidacoesDeFormulario();

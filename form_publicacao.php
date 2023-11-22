@@ -69,7 +69,6 @@ $obj_login->revalidarLogin();
         <input type="submit" value="Comentar" name="comando" />
     </form>
     <?php
-    // var_dump($_POST['comando']);
     if (isset($_POST["comando"]) && $_POST["comando"] == "Comentar") {
         $Comentario->InsertComentario($_SESSION['idPessoa'], $_GET['idPublicacao'], $_POST['Comentario']);
         unset($_POST['comando']);
