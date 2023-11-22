@@ -20,19 +20,12 @@ $obj_login->revalidarLogin();
                     <td>Username</td>
                     <td>Bio</td>
                     <td>Email</td>
-                    <!-- <td>Senha</td> -->
                     <td>Imagem</td>
                     <td>Administrador</td>
                 </tr>
 
                 <?php
                 ob_start();
-/*
-                $pessoa = $Pessoa->selecionaPessoaPorUser($_SESSION['Username']);
-                foreach ($pessoa as $dados) {
-                    $_SESSION['idPessoa'] = $dados['idPessoa'];
-                }
-*/
                 $linha = $Pessoa->selecionaPessoaPorUser($_SESSION['Username']);
 
                 foreach ($linha as $registro) {

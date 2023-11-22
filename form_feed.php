@@ -28,7 +28,6 @@ $obj_login->revalidarLogin();
                 $blob = addslashes((file_get_contents($imagem["tmp_name"])));
 
                 $idArte = ($Arte->InsertArte($_POST['idPessoa'], $blob)[0]['idArte']);
-                // var_dump($Arte->InsertArte($_POST['idPessoa'], $blob)[0]['idArte']);
                 $Publicacao->CriarPublicacao($_SESSION['idPessoa'], $idArte);
 
                 header("location:form_feed.php?comando=alteracaook");
@@ -36,41 +35,20 @@ $obj_login->revalidarLogin();
 
                 $_SESSION['idArte'] = $_GET['idArte'];
                 $_SESSION['idPublicacao'] = $_GET['idPublicacao'];
-            } /*elseif (isset($_POST['comando']) && $_POST['comando'] == 'Editar Publicação') {
-                $imagem = $_FILES['Arte'];
-                $info = getimagesize($imagem["tmp_name"]);
-
-                if (!$info) {
-                    die("arquivo não é uma imagem");
-                }
-
-                $name = $imagem['name'];
-                $type = $imagem['type'];
-
-                $blob = addslashes((file_get_contents($imagem["tmp_name"])));
-
-                $Arte->EditArte($_SESSION['idArte'], $blob);
-
-                header('location:form_feed.php');
-            } elseif (isset($_POST['comando']) && $_POST['comando'] == 'Apagar Publicação') {
-                $Publicacao->deletePublicacao($_SESSION['idPublicacao']);
-            }*/
+            }
 
             ?>
-                <form action="form_feed.php" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="idPessoa" value="<?php echo $_SESSION['idPessoa'] ?>" />
-                    <input type="file" id="Imagem" name="Imagem" accept="image/png, image/png" required />
-                    <input type="submit" value="Criar Publicação" name="comando" />
-                </form>
+            <form action="form_feed.php" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="idPessoa" value="<?php echo $_SESSION['idPessoa'] ?>" />
+                <input type="file" id="Imagem" name="Imagem" accept="image/png, image/png" required />
+                <input type="submit" value="Criar Publicação" name="comando" />
+            </form>
 
             <table>
                 <tr>
                     <td>idPublicação</td>
                     <td>Pessoa</td>
                     <td>Arte</td>
-                    <!-- <td>Comentário</td> 
-                    <td>Comunidade</td>
-                    <td>Tag</td> -->
                 </tr>
 
                 <?php
@@ -82,8 +60,6 @@ $obj_login->revalidarLogin();
                 foreach ($pessoa as $dados) {
                     $_SESSION['idPessoa'] = $dados['idPessoa'];
                 }
-
-                //var_dump($_SESSION);
 
                 /*
                 coisas salvas no SESSION
@@ -106,10 +82,6 @@ $obj_login->revalidarLogin();
                     echo "<td>" . $pub['idPublicacao'] . "</td>";
                     echo "<td>" . $pub['username'] . "</td>";
                     echo "<td> <a href=form_publicacao.php?idPublicacao=" . $pub['idPublicacao'] . "&idPessoa=" . $pub['idPessoa'] . '&idArte=' . $pub['idArte'] . "&antes=Feed" . ">" . "<img class='Arte' src='data:image/*;base64," . base64_encode($pub["arte"]) . "' />" . "</td>";
-
-                    /*if ($pub['idPessoa'] == $_SESSION['idPessoa']) {
-                        echo "<td> <a href=form_publicacao.php?idPublicacao=" . $pub['idPublicacao'] . "&idPessoa=" . $pub['idPessoa'] . '&idArte=' . $pub['idArte'] . ">" . '<input type="button" value="Selecionar" name="comando">' . "</td>";
-                    }*/
                     echo "</tr>";
                 }
                 ?>

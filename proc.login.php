@@ -9,20 +9,37 @@ require_once("class\class.ValidacoesDeFormulario.php");
 if ($validar->validarNome($_POST["Username"]) == True) {
     $Username = $_POST["Username"];
 } else {
-    header("location:index.php?erro=" . $validar->validarNome($_POST["Username"]));
+    header("location:form_criarPessoa.php?erro=username" . $validar->validarNome($_POST["Username"]));
 }
 
-if ($validar->validarSenha($_POST["Senha"]) == true) {
-    $Senha = /*md5*/($_POST["Senha"]);
+if ($validar->validarSenha($_POST["Senha"]) == True) {
+    $Senha = md5($_POST["Senha"]);
 } else {
-    header("location:index.php?erro=" . $validar->validarSenha($_POST["Senha"]));
+    header("location:form_criarPessoa.php?erro=senha" . $validar->validarSenha($_POST["Senha"]));
 }
-//var_dump($_POST);
-/*
-$Username = $_POST['Username'];
-$Senha = $_POST['Senha'];*/
 
-echo ($obj_login->revalidarLogin());
+if ($validar->validarEmail($_POST['Email']) == 'email invalido') {
+    $Email = $_POST['Email'];
+} else {
+    header("location:form_criarPessoa.php?erro=email" . $validar->validarEmail($_POST["Email"]));
+}
+
+if (isset($_POST["comando"]) && $_POST["comando"] == "Criar" && $Email != Null && $Username != Null && $Senha != Null) {
+
+    $lista = [];
+
+    foreach ($Pessoa->listaUserName() as $username) {
+        array_push($lista, $username['Username']);
+    }
+
+    //verifica se existe alguem com esse username
+    if (!in_array($_POST['Username'], $lista)) {
+        $Pessoa->incluirPessoa($_POST['Nome'], $Username, $Email, $Senha);
+        header('location:index.php');
+    } else {
+        header('location:form_criarPessoa.php?erro=UsernameInvalido');
+    }
+}
 
 if ($obj_login->validarLogin($Username, $Senha)) {
     $token = md5($_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT']);
@@ -30,9 +47,6 @@ if ($obj_login->validarLogin($Username, $Senha)) {
     session_name($token);
 
     session_start();
-
-    // $_POST['Username'] = $Username;
-    // $_POST['Senha'] = $Senha;
 
     $_SESSION["Username"] = $Username;
     $_SESSION["Senha"] = $Senha;
@@ -45,12 +59,4 @@ if ($obj_login->validarLogin($Username, $Senha)) {
     var_dump($_SESSION);
 
     header("location:form_pessoa.php");
-} else {
-    /*    
-        echo "<br>";
-        var_dump($_SESSION);
-        echo "<br>";*/
-    //var_dump($_POST);
-
-    header("location:index.php?erro=NAOLOCALIZADO");
 }
