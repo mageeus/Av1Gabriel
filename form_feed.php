@@ -36,7 +36,7 @@ $obj_login->revalidarLogin();
 
                 $_SESSION['idArte'] = $_GET['idArte'];
                 $_SESSION['idPublicacao'] = $_GET['idPublicacao'];
-            } elseif (isset($_POST['comando']) && $_POST['comando'] == 'Editar Publicação') {
+            } /*elseif (isset($_POST['comando']) && $_POST['comando'] == 'Editar Publicação') {
                 $imagem = $_FILES['Arte'];
                 $info = getimagesize($imagem["tmp_name"]);
 
@@ -54,7 +54,7 @@ $obj_login->revalidarLogin();
                 header('location:form_feed.php');
             } elseif (isset($_POST['comando']) && $_POST['comando'] == 'Apagar Publicação') {
                 $Publicacao->deletePublicacao($_SESSION['idPublicacao']);
-            }
+            }*/
 
             ?>
                 <form action="form_feed.php" method="POST" enctype="multipart/form-data">
