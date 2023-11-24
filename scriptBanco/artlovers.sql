@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02/11/2023 às 19:11
+-- Tempo de geração: 24/11/2023 às 23:05
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -234,7 +234,7 @@ ALTER TABLE `arte`
 --
 ALTER TABLE `comentario`
   ADD CONSTRAINT `idPessoaFK` FOREIGN KEY (`idPessoa`) REFERENCES `pessoa` (`idPessoa`),
-  ADD CONSTRAINT `idPublicacao` FOREIGN KEY (`idPublicacao`) REFERENCES `publicacao` (`idPublicacao`);
+  ADD CONSTRAINT `idPublicacao` FOREIGN KEY (`idPublicacao`) REFERENCES `publicacao` (`idPublicacao`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `pessoa`
