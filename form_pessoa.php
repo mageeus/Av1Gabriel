@@ -15,13 +15,12 @@ $obj_login->revalidarLogin();
         <div>
             <table>
                 <tr>
-                    <td>idPessoa</td>
+                    <!-- <td>idPessoa</td> -->
                     <td>Nome</td>
                     <td>Username</td>
                     <td>Bio</td>
                     <td>Email</td>
                     <td>Imagem</td>
-                    <td>Administrador</td>
                 </tr>
 
                 <?php
@@ -30,18 +29,20 @@ $obj_login->revalidarLogin();
 
                 foreach ($linha as $registro) {
                     echo "<tr>";
-                    echo "<td> <a href=form_Pessoa.php?alterarid=" . $registro['idPessoa'] . '>' . $registro['idPessoa'] . "</td>";
                     echo "<td>" . $registro['Nome'] . "</td>";
                     echo "<td>" . $registro['UserName'] . "</td>";
                     echo "<td>" . $registro['Bio'] . "</td>";
                     echo "<td>" . $registro['Email'] . "</td>";
                     echo "<td> <a href=form_Pessoa.php?alterarImagem=" . $registro['idPessoa'] . '>' . "<img class='perfil' src='data:image/*;base64," . base64_encode($registro["Imagem"]) . "' />" . "</td>";
-                    if ($registro['Administrador'] == 1) {
+                    echo "<td> <a href=form_Pessoa.php?alterarid=" . $registro['idPessoa'] . ">" . "<input type='button' value='Editar Perfil'/>" . "</td>";
+                    /* if ($registro['Administrador'] == 1) {
                         echo "<td>" . "Sim" . "</td>";
                     } else {
                         echo "<td>" . "Não" . "</td>";
-                    }
+                    }*/
                     echo "</tr>";
+
+                    //echo "<a href=form_Pessoa.php?alterarid=" . $registro['idPessoa'] . ">  ";
 
                     $_SESSION['idPessoa'] = $registro['idPessoa'];
                 }
@@ -63,7 +64,7 @@ $obj_login->revalidarLogin();
                     <label>Email: </label>
                     <input type="text" name="Email" value="<?php echo $selecionaPessoa[0]['Email'] ?>" maxlength="150" />
                     <label>Senha: </label>
-                    <input type="password" name="Senha" value="" maxlength="150" />
+                    <input type="password" name="Senha" value="<?php echo $selecionaPessoa[0]['Senha'] ?>" maxlength="150" />
                     <input type="submit" value="Alterar" name="comando" />
                     <input type="submit" value="Excluir" name="comando" />
                 </form>
@@ -103,7 +104,7 @@ $obj_login->revalidarLogin();
 
             } elseif (isset($_POST['comando']) && $_POST['comando'] == 'Alterar') {
 
-                $Pessoa->alterarPessoa($_POST['idPessoa'], $_POST['Nome'], $_POST['Email'], $_POST['Senha'], $_POST['Bio']);
+                $Pessoa->alterarPessoa($_POST['idPessoa'], $_POST['Nome'], $_POST['Email'], md5($_POST['Senha']), $_POST['Bio']);
                 header("location:form_Pessoa.php?comando=alteracaook");
 
             } elseif (isset($_POST['comando']) && $_POST['comando'] == 'Excluir') {

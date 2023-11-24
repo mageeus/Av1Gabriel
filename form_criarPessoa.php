@@ -5,7 +5,7 @@ require_once("header.php");
 
 <body>
 
-    <?php require_once("menu.php") ?>
+    <?php //require_once("menu.php") ?>
 
     <form action="proc.login.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="idPessoa" value="" />
